@@ -1,209 +1,1097 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Dashboard</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <title>Центр доказательной политик | Исследования для действий</title>
     <style>
+        /* Основные цвета */
+        :root {
+            --primary: #2962FF;      /* Основной синий */
+            --secondary: #006064;    /* Темно-бирюзовый */
+            --accent: #00B8D4;       /* Яркий бирюзовый */
+            --neutral: #263238;      /* Нейтральный темно-синий/серый */
+            --light: #F5F8FA;        /* Светлый фон */
+            --white: #FFFFFF;        /* Белый */
+            --dark: #171D22;         /* Темный */
+            --text: #37474F;         /* Основной текст */
+        }
+
+        /* Общие стили */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            background-color: var(--light);
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .navbar {
-            background: #fff;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--neutral);
+        }
+
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.25rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Шапка */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .user-menu {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 1rem;
         }
 
-        .user-menu button {
-            padding: 0.5rem 1rem;
+        .logo-icon {
+            height: 36px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 2rem;
+        }
+
+        .nav-link {
+            color: var(--neutral);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
             border: none;
-            border-radius: 4px;
-            background: #4a90e2;
-            color: white;
             cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--neutral);
         }
 
-        .dashboard {
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Hero секция */
+        .hero {
+            padding: 8rem 0 5rem;
+            background-color: var(--white);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-actions {
+            display: flex;
             gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-top: 2rem;
         }
 
-        .widget {
-            background: white;
+        /* Услуги секция */
+        .services {
+            background-color: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
             border-radius: 8px;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .widget-header {
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Кейсы секция */
+        .cases {
+            background-color: var(--white);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .case-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--neutral);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .case-content {
+            padding: 1.5rem;
+        }
+
+        .case-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-category {
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-desc {
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Публикации секция */
+        .publications {
+            background-color: var(--light);
+        }
+
+        .publications-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 2rem;
         }
 
-        .widget-title {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .widget-content {
-            min-height: 200px;
-        }
-
-        .metrics {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .metric-item {
+        .publications-tabs {
             display: flex;
-            justify-content: space-between;
-            padding: 0.5rem;
-            background: #f8f9fa;
-            border-radius: 4px;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        .calendar-event {
-            padding: 0.5rem;
+        .publications-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            border: none;
+        }
+
+        .publications-tab.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .publications-tab:hover:not(.active) {
+            background-color: rgba(41, 98, 255, 0.1);
+            color: var(--primary);
+        }
+
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .publication-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .publication-category {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .publication-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .publication-meta {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #78909C;
+            margin-bottom: 1rem;
+        }
+
+        .publication-date {
+            margin-right: 1rem;
+        }
+
+        .publication-desc {
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* О центре секция */
+        .about {
+            background-color: var(--white);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-color: var(--neutral);
+        }
+
+        .team-name {
+            font-size: 1.125rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-position {
+            font-size: 0.875rem;
+            color: #78909C;
             margin-bottom: 0.5rem;
-            background: #f8f9fa;
-            border-radius: 4px;
         }
 
-        .event-title {
+        .team-specialization {
+            font-size: 0.75rem;
+            font-style: italic;
+        }
+
+        /* Контакты секция */
+        .contact {
+            background-color: var(--light);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            width: 24px;
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 500;
         }
 
-        .event-time {
-            color: #666;
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #CFD8DC;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Подвал */
+        .footer {
+            background-color: var(--neutral);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--white);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-menu {
+            list-style: none;
+        }
+
+        .footer-menu li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-menu a {
+            color: #B0BEC5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-menu a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #B0BEC5;
             font-size: 0.875rem;
         }
 
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+
+        /* Мобильные стили */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 3rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
         @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                text-align: center;
+                transition: all 0.3s ease;
+                z-index: 999;
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 1.5rem 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-actions .btn {
+                margin-bottom: 1rem;
+            }
+
+            .publications-tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .publications-tab {
+                font-size: 0.875rem;
+                padding: 0.5rem 0.75rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section {
+                padding: 3rem 0;
+            }
+
+            .hero {
+                padding: 6rem 0 3rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Dashboard</div>
-        <div class="user-menu">
-            <button onclick="alert('Add Widget clicked')">Add Widget</button>
-            <button onclick="alert('Settings clicked')">Settings</button>
+    <!-- Шапка -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2C8.268 2 2 8.268 2 16C2 23.732 8.268 30 16 30C23.732 30 30 23.732 30 16C30 8.268 23.732 2 16 2Z" stroke="#2962FF" stroke-width="2" fill="white"/>
+                    <path d="M9 16H23" stroke="#2962FF" stroke-width="2"/>
+                    <path d="M12 12L16 16L12 20" stroke="#2962FF" stroke-width="2"/>
+                    <path d="M20 12L16 16L20 20" stroke="#2962FF" stroke-width="2"/>
+                </svg>
+                ЦДП
+            </a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#hero" class="nav-link active">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">О центре</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Возможности</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#cases" class="nav-link">Кейсы</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#publications" class="nav-link">Публикации</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Контакты</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </header>
 
-    <div class="dashboard">
-        <!-- Chart Widget -->
-        <div class="widget">
-            <div class="widget-header">
-                <div class="widget-title">Sales Overview</div>
-                <div class="widget-actions">⋮</div>
-            </div>
-            <div class="widget-content">
-                <canvas id="salesChart"></canvas>
-            </div>
-        </div>
-
-        <!-- Metrics Widget -->
-        <div class="widget">
-            <div class="widget-header">
-                <div class="widget-title">Key Metrics</div>
-                <div class="widget-actions">⋮</div>
-            </div>
-            <div class="widget-content metrics">
-                <div class="metric-item">
-                    <span>Total Users</span>
-                    <span>1,234</span>
+    <!-- Главная секция -->
+    <section class="hero section" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-tagline">Аналитическая поддержка для стратегических решений</div>
+                    <h1>Центр доказательной политик</h1>
+                    <p>Исследования, аналитика и данные как основа для принятия эффективных решений. Помогаем государственным органам и бизнесу действовать на основе доказательного подхода и достоверной информации.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">Обсудить проект</a>
+                        <a href="#services" class="btn btn-outline">Узнать о возможностях</a>
+                    </div>
                 </div>
-                <div class="metric-item">
-                    <span>Active Now</span>
-                    <span>342</span>
-                </div>
-                <div class="metric-item">
-                    <span>Revenue</span>
-                    <span>$12.4K</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Calendar Widget -->
-        <div class="widget">
-            <div class="widget-header">
-                <div class="widget-title">Upcoming Events</div>
-                <div class="widget-actions">⋮</div>
-            </div>
-            <div class="widget-content">
-                <div class="calendar-event">
-                    <div class="event-title">Team Meeting</div>
-                    <div class="event-time">Tomorrow at 10:00 AM</div>
-                </div>
-                <div class="calendar-event">
-                    <div class="event-title">Project Review</div>
-                    <div class="event-time">Wed, 3:00 PM</div>
+                <div class="hero-image">
+                    <img src="/api/placeholder/600/400" alt="Исследования для действий">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script>
-        // Initialize sales chart
-        const ctx = document.getElementById('salesChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-                datasets: [{
-                    label: 'Sales',
-                    data: [400, 300, 600, 800],
-                    backgroundColor: '#4a90e2',
-                    borderColor: '#4a90e2',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+    <!-- Услуги секция -->
+    <section class="services section" id="services">
+        <div class="container">
+            <h2 class="section-title">Наши возможности</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Исследования и НИР</h3>
+                    <p>Проведение комплексных научно-исследовательских работ под задачи заказчика с применением современных методологий и аналитических инструментов.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👥</div>
+                    <h3 class="service-title">Социология</h3>
+                    <p>Социологические исследования различного масштаба с использованием количественных и качественных методов для глубокого понимания социальных процессов.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏆</div>
+                    <h3 class="service-title">Рейтинги</h3>
+                    <p>Разработка и составление отраслевых и межотраслевых рейтингов с прозрачной методологией и объективными критериями оценки.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧩</div>
+                    <h3 class="service-title">Стратегии</h3>
+                    <p>Формирование стратегических документов и программ развития на основе комплексного анализа данных и прогнозных исследований.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Обработка данных</h3>
+                    <p>Сбор, систематизация и аналитическая обработка больших массивов данных для получения значимых выводов и практических рекомендаций.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3 class="service-title">Обзор отраслей</h3>
+                    <p>Комплексный анализ состояния и перспектив развития различных отраслей экономики с выявлением ключевых трендов и факторов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Кейсы секция -->
+    <section class="cases section" id="cases">
+        <div class="container">
+            <h2 class="section-title">Реализованные проекты</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div class="case-image" style="background-color: #2962FF;"></div>
+                    <div class="case-content">
+                        <div class="case-category">Стратегия</div>
+                        <h3 class="case-title">Разработка стратегии цифровой трансформации</h3>
+                        <p class="case-desc">Разработана комплексная стратегия цифровой трансформации для крупного промышленного холдинга с детальной дорожной картой и KPI на 5 лет.</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image" style="background-color: #006064;"></div>
+                    <div class="case-content">
+                        <div class="case-category">Исследование</div>
+                        <h3 class="case-title">Анализ региональных инвестиционных практик</h3>
+                        <p class="case-desc">Проведен сравнительный анализ эффективности инвестиционных практик в 85 регионах с выявлением лучших подходов и рекомендаций.</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+                <div class="case-card">
+                    <div class="case-image" style="background-color: #00B8D4;"></div>
+                    <div class="case-content">
+                        <div class="case-category">Рейтинг</div>
+                        <h3 class="case-title">Рейтинг ESG-трансформации компаний</h3>
+                        <p class="case-desc">Разработан и реализован комплексный рейтинг оценки ESG-трансформации компаний с многофакторной методологией и верификацией данных.</p>
+                        <a href="#" class="btn btn-outline">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Публикации секция -->
+    <section class="publications section" id="publications">
+        <div class="container">
+            <div class="publications-header">
+                <h2 class="section-title">Публикации и исследования</h2>
+            </div>
+            <div class="publications-tabs">
+                <button class="publications-tab active" data-category="all">Все публикации</button>
+                <button class="publications-tab" data-category="research">Исследования</button>
+                <button class="publications-tab" data-category="articles">Статьи</button>
+                <button class="publications-tab" data-category="interviews">Интервью</button>
+                <button class="publications-tab" data-category="news">Новости</button>
+            </div>
+            <div class="publications-grid">
+                <div class="publication-card">
+                    <div class="publication-category">Исследование</div>
+                    <h3 class="publication-title">Трансформация цифровых бизнес-моделей: тренды 2024</h3>
+                    <div class="publication-meta">
+                        <span class="publication-date">15 февраля 2024</span>
+                        <span class="publication-author">Центр доказательной политик</span>
+                    </div>
+                    <p class="publication-desc">Комплексное исследование ключевых трендов в развитии цифровых бизнес-моделей на российском и глобальном рынках.</p>
+                    <a href="#" class="btn btn-outline">Читать полностью</a>
+                </div>
+                <div class="publication-card">
+                    <div class="publication-category">Статья</div>
+                    <h3 class="publication-title">Измерение эффективности государственных программ: методологические аспекты</h3>
+                    <div class="publication-meta">
+                        <span class="publication-date">3 февраля 2024</span>
+                        <span class="publication-author">А. Иванов, М. Петрова</span>
+                    </div>
+                    <p class="publication-desc">Анализ существующих подходов к оценке эффективности государственных программ и предложения по их совершенствованию.</p>
+                    <a href="#" class="btn btn-outline">Читать полностью</a>
+                </div>
+                <div class="publication-card">
+                    <div class="publication-category">Интервью</div>
+                    <h3 class="publication-title">Диалог с экспертом: будущее доказательной политики в России</h3>
+                    <div class="publication-meta">
+                        <span class="publication-date">25 января 2024</span>
+                        <span class="publication-author">Д. Смирнов</span>
+                    </div>
+                    <p class="publication-desc">Интервью с ведущим экспертом о перспективах развития доказательного подхода в государственном управлении.</p>
+                    <a href="#" class="btn btn-outline">Читать полностью</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О центре секция -->
+    <section class="about section" id="about">
+        <div class="container">
+            <h2 class="section-title">О центре</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Миссия и ценности</h3>
+                    <p>Центр доказательной политик – независимая аналитическая организация, специализирующаяся на проведении исследований и разработке рекомендаций для государственных органов и крупного бизнеса. Наша миссия – содействовать принятию стратегических решений на основе объективных данных и научных методов.</p>
+                    <p>Мы придерживаемся принципов доказательного подхода, профессионализма, независимости и практической применимости наших исследований. Нашей главной ценностью является трансформация сложных аналитических выводов в конкретные практические рекомендации.</p>
+                    <h3>Команда</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="team-photo" style="background-image: url('/api/placeholder/150/150');"></div>
+                            <h4 class="team-name">Александр Иванов</h4>
+                            <div class="team-position">Директор центра</div>
+                            <div class="team-specialization">Стратегии, государственное управление</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-photo" style="background-image: url('/api/placeholder/150/150');"></div>
+                            <h4 class="team-name">Мария Петрова</h4>
+                            <div class="team-position">Руководитель исследований</div>
+                            <div class="team-specialization">Экономическая политика, ESG</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-photo" style="background-image: url('/api/placeholder/150/150');"></div>
+                            <h4 class="team-name">Дмитрий Смирнов</h4>
+                            <div class="team-position">Ведущий аналитик</div>
+                            <div class="team-specialization">Отраслевой анализ, инвестиции</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="team-photo" style="background-image: url('/api/placeholder/150/150');"></div>
+                            <h4 class="team-name">Елена Козлова</h4>
+                            <div class="team-position">Социолог</div>
+                            <div class="team-specialization">Социологические исследования, опросы</div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </section>
+                    
+                    <!-- Контакты секция -->
+                    <section class="contact section" id="contact">
+                        <div class="container">
+                            <h2 class="section-title">Контакты</h2>
+                            <div class="contact-content">
+                                <div class="contact-info">
+                                    <h3>Свяжитесь с нами</h3>
+                                    <div class="contact-item">
+                                        <div class="contact-icon">📍</div>
+                                        <div>
+                                            <strong>Адрес:</strong><br>
+                                            г. Москва, ул. Академика Королева, 12, офис 214
+                                        </div>
+                                    </div>
+                                    <div class="contact-item">
+                                        <div class="contact-icon">📞</div>
+                                        <div>
+                                            <strong>Телефон:</strong><br>
+                                            +7 (495) 123-45-67
+                                        </div>
+                                    </div>
+                                    <div class="contact-item">
+                                        <div class="contact-icon">✉️</div>
+                                        <div>
+                                            <strong>Email:</strong><br>
+                                            info@cdp-center.ru
+                                        </div>
+                                    </div>
+                                    <div class="contact-item">
+                                        <div class="contact-icon">🕒</div>
+                                        <div>
+                                            <strong>Режим работы:</strong><br>
+                                            Понедельник - Пятница: 9:00 - 18:00
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contact-form">
+                                    <h3>Напишите нам</h3>
+                                    <form id="contact-form">
+                                        <div class="form-group">
+                                            <label for="name" class="form-label">Имя</label>
+                                            <input type="text" id="name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" id="email" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subject" class="form-label">Тема</label>
+                                            <input type="text" id="subject" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message" class="form-label">Сообщение</label>
+                                            <textarea id="message" class="form-control" required></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Отправить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Подвал -->
+                    <footer class="footer">
+                        <div class="container">
+                            <div class="footer-content">
+                                <div class="footer-column">
+                                    <h3>О нас</h3>
+                                    <p>Центр доказательной политик — независимая аналитическая организация, специализирующаяся на исследованиях и аналитике для принятия стратегических решений.</p>
+                                    <div class="social-links">
+                                        <a href="#" class="social-link">TG</a>
+                                        <a href="#" class="social-link">VK</a>
+                                        <a href="#" class="social-link">YT</a>
+                                    </div>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Навигация</h3>
+                                    <ul class="footer-menu">
+                                        <li><a href="#hero">Главная</a></li>
+                                        <li><a href="#about">О центре</a></li>
+                                        <li><a href="#services">Возможности</a></li>
+                                        <li><a href="#cases">Кейсы</a></li>
+                                        <li><a href="#publications">Публикации</a></li>
+                                        <li><a href="#contact">Контакты</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Возможности</h3>
+                                    <ul class="footer-menu">
+                                        <li><a href="#">Исследования и НИР</a></li>
+                                        <li><a href="#">Социология</a></li>
+                                        <li><a href="#">Рейтинги</a></li>
+                                        <li><a href="#">Стратегии</a></li>
+                                        <li><a href="#">Обработка данных</a></li>
+                                        <li><a href="#">Обзор отраслей</a></li>
+                                    </ul>
+                                </div>
+                                <div class="footer-column">
+                                    <h3>Подписка</h3>
+                                    <p>Подпишитесь на нашу рассылку, чтобы получать актуальные исследования и аналитику.</p>
+                                    <form id="subscribe-form">
+                                        <div class="form-group">
+                                            <input type="email" placeholder="Ваш email" class="form-control" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Подписаться</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="footer-bottom">
+                                <p>&copy; 2025 Центр доказательной политик. Все права защищены.</p>
+                            </div>
+                        </div>
+                    </footer>
+                    
+                    <script>
+                        // JavaScript для управления мобильным меню
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                            const navMenu = document.getElementById('nav-menu');
+                            const header = document.getElementById('header');
+                            const navLinks = document.querySelectorAll('.nav-link');
+                            
+                            // Переключение мобильного меню
+                            mobileMenuBtn.addEventListener('click', function() {
+                                navMenu.classList.toggle('active');
+                            });
+                            
+                            // Закрытие меню при клике на ссылку
+                            navLinks.forEach(link => {
+                                link.addEventListener('click', function() {
+                                    navMenu.classList.remove('active');
+                                    
+                                    // Активная ссылка
+                                    navLinks.forEach(l => l.classList.remove('active'));
+                                    this.classList.add('active');
+                                });
+                            });
+                            
+                            // Изменение шапки при скролле
+                            window.addEventListener('scroll', function() {
+                                if (window.scrollY > 50) {
+                                    header.classList.add('scrolled');
+                                } else {
+                                    header.classList.remove('scrolled');
+                                }
+                            });
+                            
+                            // Плавная прокрутка к разделам
+                            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                                anchor.addEventListener('click', function(e) {
+                                    e.preventDefault();
+                                    
+                                    const targetId = this.getAttribute('href');
+                                    if (targetId === '#') return;
+                                    
+                                    const targetElement = document.querySelector(targetId);
+                                    if (targetElement) {
+                                        window.scrollTo({
+                                            top: targetElement.offsetTop - 80,
+                                            behavior: 'smooth'
+                                        });
+                                    }
+                                });
+                            });
+                            
+                            // Табы для публикаций
+                            const publicationTabs = document.querySelectorAll('.publications-tab');
+                            
+                            publicationTabs.forEach(tab => {
+                                tab.addEventListener('click', function() {
+                                    publicationTabs.forEach(t => t.classList.remove('active'));
+                                    this.classList.add('active');
+                                    
+                                    // Здесь будет логика фильтрации публикаций
+                                    const category = this.dataset.category;
+                                    console.log('Выбрана категория:', category);
+                                    // Фильтрация публикаций...
+                                });
+                            });
+                            
+                            // Обработка формы
+                            const contactForm = document.getElementById('contact-form');
+                            if (contactForm) {
+                                contactForm.addEventListener('submit', function(e) {
+                                    e.preventDefault();
+                                    alert('Ваше сообщение отправлено! Мы свяжемся с вами в ближайшее время.');
+                                    this.reset();
+                                });
+                            }
+                            
+                            const subscribeForm = document.getElementById('subscribe-form');
+                            if (subscribeForm) {
+                                subscribeForm.addEventListener('submit', function(e) {
+                                    e.preventDefault();
+                                    alert('Вы успешно подписались на рассылку!');
+                                    this.reset();
+                                });
+                            }
+                        });
+                    </script>
+                    </body>
+                    </html>
