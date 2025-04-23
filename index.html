@@ -1063,6 +1063,294 @@
     </div>
   </section>
 
+
+<!-- Team Section -->
+<section id="team">
+  <div class="container">
+    <div class="section-header">
+      <h2>Наша команда</h2>
+      <p>Профессионалы, которые помогут тебе стать фрилансером</p>
+    </div>
+    <div class="team-members">
+      <div class="team-member">
+        <div class="team-video-container">
+          <video class="team-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-btn">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Алмас Керимов</h3>
+          <span class="team-position">Python разработчик | Lead-ментор</span>
+          <p>Более 7 лет опыта в веб-разработке и фрилансе. Помог 200+ студентам освоить Python и получить первые заказы на Upwork.</p>
+          <div class="team-social">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="team-video-container">
+          <video class="team-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-btn">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Айжан Нурланова</h3>
+          <span class="team-position">Flutter эксперт | UX/UI дизайнер</span>
+          <p>Специалист по мобильной разработке с опытом создания приложений для международных клиентов. Поможет освоить Flutter и основы дизайна.</p>
+          <div class="team-social">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="team-video-container">
+          <video class="team-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-btn">
+            <i class="fas fa-play"></i>
+          </div>
+        </div>
+        <div class="team-info">
+          <h3>Нуржан Сатпаев</h3>
+          <span class="team-position">AI консультант | Фрилансер Upwork</span>
+          <p>Заработал более $50,000 на Upwork, используя ИИ для ускорения разработки. Научит стратегиям работы с заказчиками и продвижения на фриланс-платформах.</p>
+          <div class="team-social">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-medium"></i></a>
+            <a href="#"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Team Section Styles */
+  #team {
+    padding: 120px 0;
+    background-color: var(--light);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #team::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.05) 0%, transparent 50%);
+    z-index: 0;
+  }
+
+  .team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .team-member {
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .team-video-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    border-radius: 20px 20px 0 0;
+    background-color: var(--dark);
+    cursor: pointer;
+  }
+
+  .team-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  .video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    font-size: 1.2rem;
+    opacity: 0.9;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .team-video-container:hover .video-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+
+  .team-info {
+    padding: 30px;
+  }
+
+  .team-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: var(--dark);
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .team-position {
+    color: var(--primary);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+
+  .team-info p {
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+  }
+
+  .team-social {
+    display: flex;
+    gap: 12px;
+  }
+
+  .team-social a {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(108, 99, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .team-social a:hover {
+    background-color: var(--primary);
+    color: var(--light);
+    transform: translateY(-3px);
+  }
+
+  @media screen and (max-width: 1024px) {
+    .team-members {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .team-members {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Team Video Functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoContainers = document.querySelectorAll('.team-video-container');
+    
+    videoContainers.forEach(container => {
+      const video = container.querySelector('video');
+      const playBtn = container.querySelector('.video-play-btn');
+      
+      // Handle video play/pause
+      container.addEventListener('click', () => {
+        if (video.paused) {
+          // Stop all other videos
+          document.querySelectorAll('.team-video').forEach(v => {
+            if (v !== video) {
+              v.pause();
+              v.closest('.team-video-container').querySelector('.video-play-btn').style.display = 'flex';
+            }
+          });
+          
+          // Play this video
+          video.play();
+          playBtn.style.display = 'none';
+        } else {
+          video.pause();
+          playBtn.style.display = 'flex';
+        }
+      });
+      
+      // Show play button when video ends
+      video.addEventListener('ended', () => {
+        playBtn.style.display = 'flex';
+      });
+      
+      // Show play button when video is paused
+      video.addEventListener('pause', () => {
+        playBtn.style.display = 'flex';
+      });
+      
+      // Add hover effect
+      container.addEventListener('mouseenter', () => {
+        container.style.transform = 'scale(1.02)';
+        container.style.transition = 'transform 0.3s ease';
+      });
+      
+      container.addEventListener('mouseleave', () => {
+        container.style.transform = 'scale(1)';
+      });
+    });
+    
+    // Add parallax effect to team section
+    const teamSection = document.getElementById('team');
+    
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      const sectionPosition = teamSection.offsetTop;
+      const sectionHeight = teamSection.offsetHeight;
+      
+      if (scrollPosition > sectionPosition - window.innerHeight && 
+          scrollPosition < sectionPosition + sectionHeight) {
+        const parallaxEffect = (scrollPosition - sectionPosition + window.innerHeight) * 0.1;
+        teamSection.style.backgroundPosition = `center ${parallaxEffect}px`;
+      }
+    });
+  });
+</script>
+
+
+
   <!-- Testimonials Section -->
   <section id="testimonials">
     <div class="container">
