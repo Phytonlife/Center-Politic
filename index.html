@@ -1351,70 +1351,553 @@
 
 
 
-  <!-- Testimonials Section -->
-  <section id="testimonials">
-    <div class="container">
-      <div class="section-header">
-        <h2>Истории успеха</h2>
-        <p>Что говорят наши студенты</p>
-      </div>
-      <div class="testimonials-slider">
-        <div class="slider-wrapper">
-          <div class="slides">
-            <div class="slide">
-              <div class="testimonial-card">
-                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">Я боялся кода, но за две недели создал сайт с помощью ИИ! Теперь беру заказы на Kwork.</p>
-                <div class="testimonial-author">
-                  <div class="author-image">
-                    <img src="/api/placeholder/60/60" alt="Отзыв Айбека">
-                  </div>
-                  <div class="author-info">
-                    <h4>Айбек</h4>
-                    <p>Студент, 22 года</p>
-                  </div>
-                </div>
-              </div>
+ <!-- Testimonials Section (Redesigned) -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <h2>Истории успеха</h2>
+      <p>Реальные результаты наших выпускников</p>
+    </div>
+    
+    <div class="success-stories">
+      <div class="story-card">
+        <div class="story-video-container">
+          <video class="story-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-overlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
             </div>
-            <div class="slide">
-              <div class="testimonial-card">
-                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">Курс помог мне сделать приложение за месяц! Менторы подсказали, как взять первый заказ на $100.</p>
-                <div class="testimonial-author">
-                  <div class="author-image">
-                    <img src="/api/placeholder/60/60" alt="Отзыв Дины">
-                  </div>
-                  <div class="author-info">
-                    <h4>Дина</h4>
-                    <p>Студентка, 28 лет</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="testimonial-card">
-                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                <p class="testimonial-text">ИИ — это магия! Научился парсить данные и автоматизировать задачи. Курс стоит каждого тенге!</p>
-                <div class="testimonial-author">
-                  <div class="author-image">
-                    <img src="/api/placeholder/60/60" alt="Отзыв Нурлана">
-                  </div>
-                  <div class="author-info">
-                    <h4>Нурлан</h4>
-                    <p>Студент, 19 лет</p>
-                  </div>
-                </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <div class="story-quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p>За 4 недели создал свой первый сайт для бизнеса и уже получил заказ на Upwork за $150!</p>
+          </div>
+          <div class="story-author">
+            <img src="/api/placeholder/60/60" alt="Аватар Асхата" class="author-avatar">
+            <div class="author-details">
+              <h4>Асхат, 27 лет</h4>
+              <p>Инженер ➝ Веб-разработчик</p>
+              <div class="earnings">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Первый заказ: $150</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="slider-controls">
-          <button class="slider-button prev"><i class="fas fa-arrow-left"></i></button>
-          <button class="slider-button next"><i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="story-card">
+        <div class="story-video-container">
+          <video class="story-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-overlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <div class="story-quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p>Всегда боялась кода, но с ChatGPT создала бота для Instagram и заработала на нем 50 000 ₸!</p>
+          </div>
+          <div class="story-author">
+            <img src="/api/placeholder/60/60" alt="Аватар Дарины" class="author-avatar">
+            <div class="author-details">
+              <h4>Дарина, 19 лет</h4>
+              <p>Студентка ➝ Разработчик ботов</p>
+              <div class="earnings">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Первый заказ: $120</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card featured">
+        <div class="story-video-container">
+          <video class="story-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-overlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <div class="story-quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p>Работая в свободное время, за 3 месяца после курса заработал $1700 на Upwork, создавая приложения на Flutter!</p>
+          </div>
+          <div class="story-author">
+            <img src="/api/placeholder/60/60" alt="Аватар Нурлана" class="author-avatar">
+            <div class="author-details">
+              <h4>Нурлан, 25 лет</h4>
+              <p>Учитель ➝ Flutter-разработчик</p>
+              <div class="earnings">
+                <i class="fas fa-dollar-sign"></i>
+                <span>За 3 месяца: $1700</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-video-container">
+          <video class="story-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-overlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <div class="story-quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p>Научилась парсить данные с сайтов с помощью Python и ИИ. Теперь автоматизирую процессы для международных компаний.</p>
+          </div>
+          <div class="story-author">
+            <img src="/api/placeholder/60/60" alt="Аватар Анары" class="author-avatar">
+            <div class="author-details">
+              <h4>Анара, 31 год</h4>
+              <p>Бухгалтер ➝ Data-специалист</p>
+              <div class="earnings">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Ежемесячно: $700</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-card">
+        <div class="story-video-container">
+          <video class="story-video" poster="/api/placeholder/400/225" controls>
+            <source src="#" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-play-overlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="story-content">
+          <div class="story-quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p>В 42 года изменил жизнь: от водителя до программиста. Создаю утилиты с помощью Python и ChatGPT для бизнеса.</p>
+          </div>
+          <div class="story-author">
+            <img src="/api/placeholder/60/60" alt="Аватар Болата" class="author-avatar">
+            <div class="author-details">
+              <h4>Болат, 42 года</h4>
+              <p>Водитель ➝ Python-программист</p>
+              <div class="earnings">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Первый заказ: $200</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+    
+    <div class="testimonial-cta">
+      <p>Присоединяйся к нашим студентам и начни свой путь во фрилансе уже сегодня!</p>
+      <button class="cta-button">Записаться на курс</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Updated Testimonials Section Styles */
+  #testimonials {
+    padding: 120px 0;
+    background-color: var(--dark);
+    color: var(--light);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 90% 10%, rgba(78, 205, 196, 0.1) 0%, transparent 60%);
+    z-index: 0;
+  }
+  
+  .success-stories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+  }
+  
+  .story-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  
+  .story-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .story-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(78, 205, 196, 0.2));
+    border: 1px solid rgba(78, 205, 196, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    .story-card.featured {
+      grid-column: span 1;
+    }
+  }
+  
+  .story-card.featured::after {
+    content: 'ИСТОРИЯ МЕСЯЦА';
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background-color: var(--accent);
+    color: white;
+    padding: 5px 40px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transform: rotate(45deg);
+    z-index: 1;
+  }
+  
+  .story-video-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .story-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .story-card:hover .story-video {
+    transform: scale(1.05);
+  }
+  
+  .video-play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+  
+  .story-video.playing + .video-play-overlay {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .play-button {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .story-video-container:hover .play-button {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .story-content {
+    padding: 25px;
+  }
+  
+  .story-quote {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .quote-icon {
+    color: var(--secondary);
+    opacity: 0.5;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .story-quote p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+  }
+  
+  .story-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .author-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid rgba(78, 205, 196, 0.5);
+    object-fit: cover;
+  }
+  
+  .author-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--light);
+  }
+  
+  .author-details p {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  
+  .earnings {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(78, 205, 196, 0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: inline-flex;
+    color: var(--light);
+  }
+  
+  .earnings i {
+    color: var(--accent);
+  }
+  
+  .testimonial-cta {
+    margin-top: 60px;
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .testimonial-cta p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  /* Animation for featured story */
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(78, 205, 196, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(78, 205, 196, 0);
+    }
+  }
+  
+  .story-card.featured {
+    animation: pulse 2s infinite;
+  }
+  
+  /* Make grid responsive */
+  @media screen and (max-width: 1024px) {
+    .success-stories {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .success-stories {
+      grid-template-columns: 1fr;
+    }
+    
+    .story-card.featured::after {
+      right: -45px;
+    }
+  }
+</style>
+
+<script>
+  // Success Stories Video Functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoContainers = document.querySelectorAll('.story-video-container');
+    
+    videoContainers.forEach(container => {
+      const video = container.querySelector('.story-video');
+      const overlay = container.querySelector('.video-play-overlay');
+      
+      // Handle click on video container
+      container.addEventListener('click', () => {
+        if (video.paused) {
+          // Pause all other videos
+          document.querySelectorAll('.story-video').forEach(v => {
+            if (v !== video) {
+              v.pause();
+              v.classList.remove('playing');
+            }
+          });
+          
+          // Play this video
+          video.play();
+          video.classList.add('playing');
+        } else {
+          video.pause();
+          video.classList.remove('playing');
+        }
+      });
+      
+      // Reset when video ends
+      video.addEventListener('ended', () => {
+        video.classList.remove('playing');
+      });
+      
+      // Show overlay when video is paused
+      video.addEventListener('pause', () => {
+        video.classList.remove('playing');
+      });
+    });
+    
+    // Animated entrance for story cards
+    const storyCards = document.querySelectorAll('.story-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    storyCards.forEach((card) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(50px)';
+      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      observer.observe(card);
+    });
+    
+    // Random shine effect on story cards
+    function createShineEffect() {
+      const randomIndex = Math.floor(Math.random() * storyCards.length);
+      const card = storyCards[randomIndex];
+      
+      const shine = document.createElement('div');
+      shine.style.position = 'absolute';
+      shine.style.top = '0';
+      shine.style.left = '-100%';
+      shine.style.width = '100%';
+      shine.style.height = '100%';
+      shine.style.background = 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)';
+      shine.style.transition = 'left 1s ease';
+      shine.style.zIndex = '1';
+      shine.style.pointerEvents = 'none';
+      
+      card.style.position = 'relative';
+      card.style.overflow = 'hidden';
+      card.appendChild(shine);
+      
+      setTimeout(() => {
+        shine.style.left = '100%';
+      }, 100);
+      
+      setTimeout(() => {
+        card.removeChild(shine);
+      }, 1200);
+    }
+    
+    // Create shine effect every 4 seconds
+    setInterval(createShineEffect, 4000);
+    
+    // Update earnings counter animation
+    const earningElements = document.querySelectorAll('.earnings span');
+    
+    earningElements.forEach(element => {
+      const finalValue = element.textContent;
+      const numericValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
+      
+      if (!isNaN(numericValue)) {
+        const prefix = finalValue.includes('$') ? '$' : '';
+        const suffix = finalValue.includes('месяца') ? ' за 3 месяца' : 
+                      finalValue.includes('Ежемесячно') ? ' ежемесячно' : '';
+        
+        element.textContent = prefix + '0';
+        
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            let currentValue = 0;
+            const duration = 1500;
+            const step = numericValue / (duration / 50);
+            
+            const counter = setInterval(() => {
+              currentValue += step;
+              if (currentValue >= numericValue) {
+                currentValue = numericValue;
+                clearInterval(counter);
+              }
+              element.textContent = prefix + Math.floor(currentValue) + suffix;
+            }, 50);
+            
+            observer.unobserve(entries[0].target);
+          }
+        }, { threshold: 0.5 });
+        
+        observer.observe(element.closest('.story-card'));
+      }
+    });
+  });
+</script>
 
   <!-- Pricing Section -->
   <section id="pricing">
